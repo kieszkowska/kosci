@@ -46,8 +46,9 @@ int main()
             if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE) {
                 SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
                 SDL_RenderClear(ren);
+                delete dices;
 
-                Dices* dices = new Dices(ren);
+                dices->roll();
                 dices->Draw(ren);
 
                 SDL_RenderPresent(ren);

@@ -3,10 +3,6 @@
 Dices::Dices(SDL_Renderer* ren)
 {
     this->tex = IMG_LoadTexture(ren, "dices.png");
-
-    for (int i = 0; i < 5; i++) {
-        this->tab[i] = Dice();
-    }
 }
 
 Dices::~Dices()
@@ -14,8 +10,9 @@ Dices::~Dices()
     SDL_DestroyTexture(this->tex);
 }
 
-int Dices::Draw(SDL_Renderer* ren)
+void Dices::Draw(SDL_Renderer* ren)
 {
+    this->roll();
     for (int i = 0; i < 5; i++) {
         this->dst.h = 64;
         this->dst.w = 64;
@@ -27,6 +24,13 @@ int Dices::Draw(SDL_Renderer* ren)
         this->src.w = 64;
         this->src.h = 64;
 
-        return SDL_RenderCopy(ren, this->tex, &this->src, &this->dst);
+        SDL_RenderCopy(ren, this->tex, &this->src, &this->dst);
+    }
+}
+
+void Dices::roll()
+{
+    for (int i = 0; i < 5; i++) {
+        this->tab[i] = Dice();
     }
 }

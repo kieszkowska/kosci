@@ -20,7 +20,8 @@ protected:
 public:
     Dices(SDL_Renderer *ren);
     ~Dices();
-    int Draw(SDL_Renderer *ren);
+    void Draw(SDL_Renderer *ren);
+    void roll();
 };
 
 #endif // DICES_H
