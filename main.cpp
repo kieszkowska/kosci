@@ -5,8 +5,8 @@
 
 using namespace std;
 
-#define SCREEN_W 640
-#define SCREEN_H 480
+#define SCREEN_W 800
+#define SCREEN_H 530
 
 #include "dices.h"
 
@@ -37,27 +37,30 @@ int main()
     SDL_Event e;
     Dices* dices = new Dices(ren);
 
+    SDL_Texture* background = IMG_LoadTexture(ren, "table.png");
+
     while (run) {
+//        SDL_RenderClear(ren);
+//        SDL_RenderCopy(ren, background, NULL, NULL);
+
         while(SDL_PollEvent(&e)) {
             SDL_RenderClear(ren);
+            SDL_RenderCopy(ren, background, NULL, NULL);
+            dices->Draw(ren);
             if (e.type == SDL_QUIT) {
                 run = false;
             }
             if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE) {
-                SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
-                SDL_RenderClear(ren);
-                delete dices;
-
                 dices->roll();
-                dices->Draw(ren);
-
-                SDL_RenderPresent(ren);
             }
         }
+
+        SDL_RenderPresent(ren);
 
     }
 
     delete dices;
+    SDL_DestroyTexture(background);
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(w);
     IMG_Quit();

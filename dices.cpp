@@ -12,12 +12,11 @@ Dices::~Dices()
 
 void Dices::Draw(SDL_Renderer* ren)
 {
-    this->roll();
     for (int i = 0; i < 5; i++) {
         this->dst.h = 64;
         this->dst.w = 64;
-        this->dst.x = i * 67;
-        this->dst.y = 10;
+        this->dst.x = 400;
+        this->dst.y = i * 106 + 20;
 
         this->src.x = (this->tab[i].getValue() - 1) * 67;
         this->src.y = 0;
