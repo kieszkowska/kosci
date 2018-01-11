@@ -2,6 +2,7 @@
 #include <ctime>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 
 using namespace std;
 
@@ -9,6 +10,7 @@ using namespace std;
 #define SCREEN_H 530
 
 #include "dices.h"
+#include "round.h"
 
 int main()
 {
@@ -16,6 +18,11 @@ int main()
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         std::cout << "Blad SDL_Init(): " << SDL_GetError() << std::endl;
+        return 0;
+    }
+
+    if(TTF_Init() == -1) {
+        std::cout << "Blad TTF_Init: " << TTF_GetError() << std::endl;
         return 0;
     }
 
@@ -33,6 +40,12 @@ int main()
         return 0;
     }
 
+    TTF_Font *font;
+    font = TTF_OpenFont("OpenSans.ttf", 16);
+    if(!font) {
+        std::cout << "Blad TTF_OpenFont: " << TTF_GetError() << std::endl;
+    }
+
     bool run = true;
     SDL_Event e;
     Dices* dices = new Dices(ren);
@@ -40,18 +53,15 @@ int main()
     SDL_Texture* background = IMG_LoadTexture(ren, "table.png");
 
     while (run) {
-//        SDL_RenderClear(ren);
-//        SDL_RenderCopy(ren, background, NULL, NULL);
 
         while(SDL_PollEvent(&e)) {
             SDL_RenderClear(ren);
             SDL_RenderCopy(ren, background, NULL, NULL);
+
             dices->Draw(ren);
+
             if (e.type == SDL_QUIT) {
                 run = false;
-            }
-            if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE) {
-                dices->roll();
             }
         }
 
