@@ -23,7 +23,9 @@ void Dices::Draw(SDL_Renderer* ren)
         this->src.w = 64;
         this->src.h = 64;
 
-        SDL_RenderCopy(ren, this->tex, &this->src, &this->dst);
+        SDL_RendererFlip flip = SDL_FLIP_HORIZONTAL;
+
+        SDL_RenderCopyEx(ren, this->tex, &this->src, &this->dst, this->tab[i].getAngle(), NULL, flip);
     }
 }
 

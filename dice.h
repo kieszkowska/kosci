@@ -14,6 +14,7 @@ protected:
 public:
     Dice();
     int getValue();
+    int getAngle();
 };
 
 #endif // DICE_H

@@ -10,3 +10,8 @@ int Dice::getValue()
 {
     return this->value;
 }
+
+int Dice::getAngle()
+{
+    return this->angle;
+}

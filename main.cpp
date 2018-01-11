@@ -10,7 +10,8 @@ using namespace std;
 #define SCREEN_H 530
 
 #include "dices.h"
-#include "round.h"
+#include "player.h"
+#include "rollbutton.h"
 
 int main()
 {
@@ -34,6 +35,9 @@ int main()
         return 0;
     }
 
+
+
+
     SDL_Renderer *ren = SDL_CreateRenderer(w, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (ren == nullptr) {
         std::cout << "Blad SDL_CreateRenderer(): " << SDL_GetError() << std::endl;
@@ -46,11 +50,22 @@ int main()
         std::cout << "Blad TTF_OpenFont: " << TTF_GetError() << std::endl;
     }
 
+
+
+
     bool run = true;
     SDL_Event e;
+
+    RollButton* rollButton = new RollButton(664, 316, 54, 53);
+
     Dices* dices = new Dices(ren);
 
+    Player* player1 = new Player();
+    Player* player2 = new Player();
+
     SDL_Texture* background = IMG_LoadTexture(ren, "table.png");
+
+    int x, y;
 
     while (run) {
 
@@ -60,8 +75,19 @@ int main()
 
             dices->Draw(ren);
 
+            if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE) {
+                dices->roll();
+           }
+
             if (e.type == SDL_QUIT) {
                 run = false;
+            }
+
+            if (e.type == SDL_MOUSEBUTTONUP && SDL_BUTTON(SDL_BUTTON_LEFT)) {
+                SDL_GetMouseState(&x, &y);
+                if(rollButton->checkBounds(x, y)) {
+                    dices->roll();
+                }
             }
         }
 
@@ -69,6 +95,11 @@ int main()
 
     }
 
+
+
+
+    delete player1;
+    delete player2;
     delete dices;
     SDL_DestroyTexture(background);
     SDL_DestroyRenderer(ren);
