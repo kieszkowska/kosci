@@ -3,8 +3,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-
-using namespace std;
+#include <vector>
 
 #define SCREEN_W 800
 #define SCREEN_H 530
@@ -12,6 +11,7 @@ using namespace std;
 #include "dices.h"
 #include "player.h"
 #include "rollbutton.h"
+#include "clickable.h"
 
 int main()
 {
@@ -60,12 +60,17 @@ int main()
 
     Dices* dices = new Dices(ren);
 
+    rollButton->bindDices(dices);
+
     Player* player1 = new Player();
     Player* player2 = new Player();
 
     SDL_Texture* background = IMG_LoadTexture(ren, "table.png");
 
-    int x, y;
+    std::vector<Clickable*> ui;
+    ui.push_back(rollButton);
+
+    int mousex, mousey;
 
     while (run) {
 
@@ -84,9 +89,11 @@ int main()
             }
 
             if (e.type == SDL_MOUSEBUTTONUP && SDL_BUTTON(SDL_BUTTON_LEFT)) {
-                SDL_GetMouseState(&x, &y);
-                if(rollButton->checkBounds(x, y)) {
-                    dices->roll();
+                SDL_GetMouseState(&mousex, &mousey);
+                for (int i = 0; i < ui.size(); i++) {
+                    if (ui[i]->checkBounds(mousex, mousey)) {
+                        ui[i]->click();
+                    }
                 }
             }
         }
@@ -96,8 +103,10 @@ int main()
     }
 
 
-
-
+    for (int i = 0; i < ui.size(); i++) {
+        delete ui[i];
+    }
+    delete rollButton;
     delete player1;
     delete player2;
     delete dices;

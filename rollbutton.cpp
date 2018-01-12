@@ -2,16 +2,23 @@
 
 RollButton::RollButton(int x, int y, int h, int w)
 {
-    this->rect.x = x;
-    this->rect.y = y;
-    this->rect.w = w;
-    this->rect.h = h;
+    this->pos.x = x;
+    this->pos.y = y;
+    this->pos.w = w;
+    this->pos.h = h;
 }
 
-bool RollButton::checkBounds(int x, int y)
+SDL_Rect RollButton::getRect()
 {
-    if (this->rect.x < x && this->rect.x + this->rect.w > x && this->rect.y < y && this->rect.y + this->rect.h > y) {
-        return true;
-    }
-    return false;
+    return this->pos;
+}
+
+void RollButton::click()
+{
+    dices->roll();
+}
+
+void RollButton::bindDices(Dices *dices)
+{
+    this->dices = dices;
 }
