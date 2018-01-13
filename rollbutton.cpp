@@ -8,6 +8,11 @@ RollButton::RollButton(int x, int y, int h, int w)
     this->pos.h = h;
 }
 
+RollButton::~RollButton()
+{
+
+}
+
 SDL_Rect RollButton::getRect()
 {
     return this->pos;

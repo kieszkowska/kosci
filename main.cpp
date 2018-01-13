@@ -90,7 +90,7 @@ int main()
 
             if (e.type == SDL_MOUSEBUTTONUP && SDL_BUTTON(SDL_BUTTON_LEFT)) {
                 SDL_GetMouseState(&mousex, &mousey);
-                for (int i = 0; i < ui.size(); i++) {
+                for (unsigned long i = 0; i < ui.size(); i++) {
                     if (ui[i]->checkBounds(mousex, mousey)) {
                         ui[i]->click();
                     }
@@ -103,7 +103,7 @@ int main()
     }
 
 
-    for (int i = 0; i < ui.size(); i++) {
+    for (unsigned long i = 0; i < ui.size(); i++) {
         delete ui[i];
     }
     delete rollButton;

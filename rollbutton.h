@@ -15,6 +15,7 @@ protected:
 
 public:
     RollButton(int x, int y, int h, int w);
+    ~RollButton();
     SDL_Rect getRect();
     void click();
     void bindDices(Dices* dices);
