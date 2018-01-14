@@ -66,4 +66,13 @@ void ScoreTable::write()
 
     this->writer->write(ren, std::to_string(sum2).c_str(), pos);
 
+    pos.x = 713;
+    pos.y = 70;
+
+    this->writer->write(ren, std::to_string(this->player1->getScore()).c_str(), pos);
+
+    pos.y = 122;
+
+    this->writer->write(ren, std::to_string(this->player2->getScore()).c_str(), pos);
+
 }

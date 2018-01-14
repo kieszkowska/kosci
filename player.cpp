@@ -21,3 +21,8 @@ int Player::getScoreTable(int i)
     return this->scoreTable[i];
 }
 
+int Player::getScore()
+{
+    return this->score;
+}
+

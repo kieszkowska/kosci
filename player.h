@@ -28,6 +28,7 @@ public:
     Player();
     void resetScore();
     int getScoreTable(int i);
+    int getScore();
 };
 
 #endif // PLAYER_H
