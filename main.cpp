@@ -13,6 +13,7 @@
 #include "rollbutton.h"
 #include "clickable.h"
 #include "writetext.h"
+#include "newgame.h"
 
 int main()
 {
@@ -77,17 +78,19 @@ int main()
     WriteText OpenSans("OpenSans.ttf", 14);
     SDL_Point newGamePos { 650, 200 };
 
+    NewGame* newGameButton = new NewGame(ren, "Nowa gra", newGamePos, OpenSans);
+
     ui.push_back(rollButton);
+    ui.push_back(newGameButton);
 
 
     while (run) {
 
         while(SDL_PollEvent(&e)) {
             SDL_RenderClear(ren);
-            SDL_RenderCopy(ren, background, NULL, NULL);
+            SDL_RenderCopy(ren, background, NULL, NULL);;
 
             dices->Draw(ren);
-            OpenSans.write(ren, "Nowa gra", newGamePos);
 
             if (e.type == SDL_QUIT) {
                 run = false;
