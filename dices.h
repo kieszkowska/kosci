@@ -14,6 +14,7 @@ protected:
     SDL_Texture* tex;
     SDL_Rect src;
     SDL_Rect dst;
+    SDL_Rect dices[5];
     int w;
     int h;
 
@@ -22,6 +23,8 @@ public:
     ~Dices();
     void Draw(SDL_Renderer *ren);
     void roll();
+    void nextPlayer();
+    bool isDiceLocked(int i);
 };
 
 #endif // DICES_H

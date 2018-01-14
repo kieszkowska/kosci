@@ -15,6 +15,7 @@
 #include "writetext.h"
 #include "newgame.h"
 #include "scoretable.h"
+#include "dicehover.h"
 
 int main()
 {
@@ -71,6 +72,8 @@ int main()
 
     Dices* dices = new Dices(ren);
 
+    DiceHover* hover = new DiceHover(dices);
+
     rollButton->bindDices(dices);
 
     Player* player1 = new Player();
@@ -91,13 +94,15 @@ int main()
 
     while (run) {
 
-        while(SDL_PollEvent(&e)) {
-            SDL_RenderClear(ren);
-            SDL_RenderCopy(ren, background, NULL, NULL);;
+        SDL_RenderClear(ren);
+        SDL_RenderCopy(ren, background, NULL, NULL);;
 
-            dices->Draw(ren);
-            newGameButton->newGameWrite(ren, "Nowa gra", newGamePos, openSans);
-            score->write();
+        dices->Draw(ren);
+        newGameButton->newGameWrite(ren, "Nowa gra", newGamePos, openSans);
+        score->write();
+        hover->draw(ren);
+
+        while(SDL_PollEvent(&e)) {
 
             if (e.type == SDL_QUIT) {
                 run = false;
@@ -122,6 +127,7 @@ int main()
         delete ui[i];
     }
 
+    delete hover;
     delete score;
     delete openSans;
     delete newGameButton;

@@ -30,6 +30,20 @@ void Dices::Draw(SDL_Renderer* ren)
 void Dices::roll()
 {
     for (int i = 0; i < 5; i++) {
-        this->tab[i] = Dice();
+        if (!this->tab[i].isLocked()) {
+            this->tab[i] = Dice();
+        }
     }
+}
+
+void Dices::nextPlayer()
+{
+    for (int i = 0; i < 5; i++) {
+        this->tab[i].unlock();
+    }
+}
+
+bool Dices::isDiceLocked(int i)
+{
+    return this->tab[i].isLocked();
 }
