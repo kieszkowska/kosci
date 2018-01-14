@@ -14,6 +14,7 @@
 #include "clickable.h"
 #include "writetext.h"
 #include "newgame.h"
+#include "scoretable.h"
 
 int main()
 {
@@ -75,10 +76,14 @@ int main()
     Player* player1 = new Player();
     Player* player2 = new Player();
 
-    WriteText OpenSans("OpenSans.ttf", 14);
+    WriteText* openSans = new WriteText("OpenSans.ttf", 14);
     SDL_Point newGamePos { 650, 200 };
 
-    NewGame* newGameButton = new NewGame(ren, "Nowa gra", newGamePos, OpenSans);
+    NewGame* newGameButton = new NewGame();
+
+    ScoreTable* score = new ScoreTable(player1, player2, ren, openSans);
+
+    newGameButton->setPlayers(player1, player2);
 
     ui.push_back(rollButton);
     ui.push_back(newGameButton);
@@ -91,6 +96,8 @@ int main()
             SDL_RenderCopy(ren, background, NULL, NULL);;
 
             dices->Draw(ren);
+            newGameButton->newGameWrite(ren, "Nowa gra", newGamePos, openSans);
+            score->write();
 
             if (e.type == SDL_QUIT) {
                 run = false;
@@ -114,6 +121,10 @@ int main()
     for (unsigned long i = 0; i < ui.size(); i++) {
         delete ui[i];
     }
+
+    delete score;
+    delete openSans;
+    delete newGameButton;
     delete player1;
     delete player2;
     delete dices;

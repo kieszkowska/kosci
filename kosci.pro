@@ -10,7 +10,8 @@ SOURCES += main.cpp \
     rollbutton.cpp \
     clickable.cpp \
     writetext.cpp \
-    newgame.cpp
+    newgame.cpp \
+    scoretable.cpp
 LIBS += -lSDL2
 LIBS += -lSDL2_image
 LIBS += -lSDL2_ttf
@@ -22,4 +23,5 @@ HEADERS += \
     rollbutton.h \
     clickable.h \
     writetext.h \
-    newgame.h
+    newgame.h \
+    scoretable.h

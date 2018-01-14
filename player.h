@@ -6,7 +6,7 @@ class Player
 {
 protected:
     int score = 0;
-    unsigned int score_table[14];
+    unsigned int scoreTable[14];
     enum cell {
         sum1,
         sum2,
@@ -26,6 +26,8 @@ protected:
 
 public:
     Player();
+    void resetScore();
+    int getScoreTable(int i);
 };
 
 #endif // PLAYER_H
