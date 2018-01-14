@@ -10,6 +10,7 @@ protected:
     SDL_Rect pos;
 
 public:
+    virtual ~Clickable() {};
     virtual void click() = 0;
     virtual bool checkBounds (int x, int y);
 

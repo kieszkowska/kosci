@@ -8,7 +8,9 @@ SOURCES += main.cpp \
     dices.cpp \
     player.cpp \
     rollbutton.cpp \
-    clickable.cpp
+    clickable.cpp \
+    writetext.cpp \
+    newgame.cpp
 LIBS += -lSDL2
 LIBS += -lSDL2_image
 LIBS += -lSDL2_ttf
@@ -18,4 +20,6 @@ HEADERS += \
     dices.h \
     player.h \
     rollbutton.h \
-    clickable.h
+    clickable.h \
+    writetext.h \
+    newgame.h

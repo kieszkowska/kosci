@@ -12,10 +12,14 @@
 #include "player.h"
 #include "rollbutton.h"
 #include "clickable.h"
+#include "writetext.h"
 
 int main()
 {
     srand(time(NULL));
+
+
+//    Init SDL, TTF, IMG
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         std::cout << "Blad SDL_Init(): " << SDL_GetError() << std::endl;
@@ -29,14 +33,14 @@ int main()
 
     IMG_Init(IMG_INIT_PNG);
 
+
+//    Create Window, Renderer
+
     SDL_Window *w = SDL_CreateWindow("Kosci", 100, 100, SCREEN_W, SCREEN_H, SDL_WINDOW_SHOWN);
     if (w == nullptr) {
         std::cout << "Blad SDL_CreateWindow(): " << SDL_GetError() << std::endl;
         return 0;
     }
-
-
-
 
     SDL_Renderer *ren = SDL_CreateRenderer(w, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (ren == nullptr) {
@@ -44,17 +48,22 @@ int main()
         return 0;
     }
 
-    TTF_Font *font;
-    font = TTF_OpenFont("OpenSans.ttf", 16);
-    if(!font) {
-        std::cout << "Blad TTF_OpenFont: " << TTF_GetError() << std::endl;
-    }
 
+//    Load Texture
+
+    SDL_Texture* background = IMG_LoadTexture(ren, "table.png");
 
 
 
     bool run = true;
+
     SDL_Event e;
+
+    std::vector<Clickable*> ui;
+
+    int mousex, mousey;
+
+
 
     RollButton* rollButton = new RollButton(664, 316, 54, 53);
 
@@ -65,12 +74,11 @@ int main()
     Player* player1 = new Player();
     Player* player2 = new Player();
 
-    SDL_Texture* background = IMG_LoadTexture(ren, "table.png");
+    WriteText OpenSans("OpenSans.ttf", 14);
+    SDL_Point newGamePos { 650, 200 };
 
-    std::vector<Clickable*> ui;
     ui.push_back(rollButton);
 
-    int mousex, mousey;
 
     while (run) {
 
@@ -79,10 +87,7 @@ int main()
             SDL_RenderCopy(ren, background, NULL, NULL);
 
             dices->Draw(ren);
-
-            if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_SPACE) {
-                dices->roll();
-           }
+            OpenSans.write(ren, "Nowa gra", newGamePos);
 
             if (e.type == SDL_QUIT) {
                 run = false;
@@ -106,15 +111,17 @@ int main()
     for (unsigned long i = 0; i < ui.size(); i++) {
         delete ui[i];
     }
-    delete rollButton;
     delete player1;
     delete player2;
     delete dices;
+
     SDL_DestroyTexture(background);
     SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(w);
+    TTF_Quit();
     IMG_Quit();
     SDL_Quit();
+
     return 0;
 }
 
