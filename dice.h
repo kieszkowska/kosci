@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <math.h>
 
 #include "clickable.h"
 
@@ -13,6 +14,8 @@ protected:
     int value;
     int angle;
     bool locked = false;
+    int x, y;
+    int r = 46;
 
 public:
     Dice();
@@ -21,7 +24,7 @@ public:
     bool isLocked();
     void unlock();
     void click();
-    void checkBounds(int x, int y);
+    bool checkBounds(int mx, int my);
 };
 
 #endif // DICE_H

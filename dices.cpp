@@ -47,3 +47,8 @@ bool Dices::isDiceLocked(int i)
 {
     return this->tab[i].isLocked();
 }
+
+Dice Dices::getDiceTab(int i)
+{
+    return tab[i];
+}

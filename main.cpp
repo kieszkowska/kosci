@@ -71,7 +71,6 @@ int main()
     RollButton* rollButton = new RollButton(664, 316, 54, 53);
 
     Dices* dices = new Dices(ren);
-
     DiceHover* hover = new DiceHover(dices);
 
     rollButton->bindDices(dices);
@@ -90,6 +89,11 @@ int main()
 
     ui.push_back(rollButton);
     ui.push_back(newGameButton);
+
+    for (int i = 0; i < 5; i++) {
+        ui.push_back(dices->getDiceTab[i]);
+    }
+
 
 
     while (run) {

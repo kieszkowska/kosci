@@ -25,6 +25,7 @@ public:
     void roll();
     void nextPlayer();
     bool isDiceLocked(int i);
+    Dice getDiceTab(int i);
 };
 
 #endif // DICES_H
