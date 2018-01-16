@@ -6,11 +6,6 @@ NewGame::NewGame()
 
 }
 
-NewGame::~NewGame()
-{
-
-}
-
 void NewGame::click()
 {
     this->player1->resetScore();

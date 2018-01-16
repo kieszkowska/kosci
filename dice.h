@@ -25,6 +25,7 @@ public:
     void unlock();
     void click();
     bool checkBounds(int mx, int my);
+    void reset();
 };
 
 #endif // DICE_H

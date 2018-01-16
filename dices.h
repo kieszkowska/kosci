@@ -10,11 +10,12 @@
 class Dices
 {
 protected:
-    Dice tab[5];
+    Dice* tab[5];
     SDL_Texture* tex;
     SDL_Rect src;
     SDL_Rect dst;
     SDL_Rect dices[5];
+    SDL_Rect rect;
     int w;
     int h;
 
@@ -25,7 +26,7 @@ public:
     void roll();
     void nextPlayer();
     bool isDiceLocked(int i);
-    Dice getDiceTab(int i);
+    Dice* getDicePointer(int i);
 };
 
 #endif // DICES_H
