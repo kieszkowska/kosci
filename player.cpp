@@ -22,7 +22,7 @@ void Player::newGame()
     this->score = 0;
 }
 
-int Player::setScoreTable(int i, int val)
+void Player::setScoreTable(int i, int val)
 {
     this->scoreTable[i] = val;
 }

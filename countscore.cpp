@@ -143,4 +143,6 @@ int CountScore::countScore(int cell)
         }
         return sum;
     }
+
+    return -1;
 }

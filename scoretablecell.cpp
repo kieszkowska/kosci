@@ -13,6 +13,8 @@ ScoreTableCell::ScoreTableCell(int pos, int x, int y, Player *player1, Player* p
 
     this->player1 = player1;
     this->player2 = player2;
+
+    this->turn = turn;
 }
 
 void ScoreTableCell::click()
