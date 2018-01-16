@@ -25,6 +25,7 @@ protected:
 
 public:
     ScoreTable(Player *player1, Player *player2, SDL_Renderer *ren, WriteText *writer, Dices* dices);
+    ~ScoreTable();
     void write();
 };
 

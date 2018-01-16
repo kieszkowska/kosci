@@ -15,6 +15,11 @@ ScoreTable::ScoreTable(Player *player1, Player *player2, SDL_Renderer *ren, Writ
     }
 }
 
+ScoreTable::~ScoreTable()
+{
+    delete this->counter;
+}
+
 void ScoreTable::write()
 {
     SDL_SetRenderDrawBlendMode(ren, SDL_BLENDMODE_BLEND);

@@ -147,6 +147,7 @@ int main()
         delete ui[i];
     }
 
+    delete turn;
     delete count;
     delete score;
     delete openSans;

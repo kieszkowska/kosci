@@ -15,10 +15,11 @@ SDL_Rect WriteText::write(std::string text, SDL_Point pos)
 {
     SDL_Rect rect;
     if (font == nullptr) {
-        std::cout << "Błąd fonta";
+        std::cout << "Błąd fonta" << std::endl;
     }
-    this->surf = TTF_RenderUTF8_Blended(this->font, text.c_str(), this->color);
-    this->tex = SDL_CreateTextureFromSurface(ren, this->surf);
+    SDL_Surface* surf;
+    surf = TTF_RenderUTF8_Blended(this->font, text.c_str(), this->color);
+    this->tex = SDL_CreateTextureFromSurface(ren, surf);
     SDL_QueryTexture(tex, NULL, NULL, &rect.w, &rect.h);
     rect.x = pos.x;
     rect.y = pos.y;
@@ -30,10 +31,11 @@ SDL_Rect WriteText::writeSecondary(std::string text, SDL_Point pos)
 {
     SDL_Rect rect;
     if (font == nullptr) {
-        std::cout << "Błąd fonta";
+        std::cout << "Błąd fonta" << std::endl;
     }
-    this->surf = TTF_RenderUTF8_Blended(this->font, text.c_str(), this->colorSecondary);
-    this->tex = SDL_CreateTextureFromSurface(ren, this->surf);
+    SDL_Surface* surf;
+    surf = TTF_RenderUTF8_Blended(this->font, text.c_str(), this->colorSecondary);
+    this->tex = SDL_CreateTextureFromSurface(ren, surf);
     SDL_QueryTexture(tex, NULL, NULL, &rect.w, &rect.h);
     rect.x = pos.x;
     rect.y = pos.y;
