@@ -11,7 +11,9 @@ SOURCES += main.cpp \
     clickable.cpp \
     writetext.cpp \
     newgame.cpp \
-    scoretable.cpp
+    scoretable.cpp \
+    scoretablecell.cpp \
+    countscore.cpp
 LIBS += -lSDL2
 LIBS += -lSDL2_image
 LIBS += -lSDL2_ttf
@@ -24,4 +26,6 @@ HEADERS += \
     clickable.h \
     writetext.h \
     newgame.h \
-    scoretable.h
+    scoretable.h \
+    scoretablecell.h \
+    countscore.h

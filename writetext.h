@@ -13,13 +13,16 @@ class WriteText
 protected:
     TTF_Font* font;
     SDL_Color color {255, 255, 255, 255};
+    SDL_Color colorSecondary {109, 109, 109, 255};
     SDL_Surface* surf;
     SDL_Texture* tex;
+    SDL_Renderer* ren;
 
 public:
-    WriteText(std::string file, int size);
+    WriteText(std::string file, int size, SDL_Renderer *ren);
     ~WriteText();
-    SDL_Rect write(SDL_Renderer *ren, std::string text, SDL_Point pos);
+    SDL_Rect write(std::string text, SDL_Point pos);
+    SDL_Rect writeSecondary(std::string text, SDL_Point pos);
 };
 
 #endif // WRITETEXT_H

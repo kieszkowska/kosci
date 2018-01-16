@@ -15,6 +15,7 @@
 #include "writetext.h"
 #include "newgame.h"
 #include "scoretable.h"
+#include "scoretablecell.h"
 
 
 int main()
@@ -77,12 +78,12 @@ int main()
     Player* player1 = new Player();
     Player* player2 = new Player();
 
-    WriteText* openSans = new WriteText("OpenSans.ttf", 14);
+    WriteText* openSans = new WriteText("OpenSans.ttf", 14, ren);
     SDL_Point newGamePos { 650, 200 };
 
     NewGame* newGameButton = new NewGame();
 
-    ScoreTable* score = new ScoreTable(player1, player2, ren, openSans);
+    ScoreTable* score = new ScoreTable(player1, player2, ren, openSans, dices);
 
     newGameButton->setPlayers(player1, player2);
 
@@ -93,6 +94,11 @@ int main()
         ui.push_back(dices->getDicePointer(i));
     }
 
+    for (int i = 0; i < 14; i++) {
+        ui.push_back(new ScoreTableCell(100, 30 * i + 50));
+        ui.push_back(new ScoreTableCell(190, 30 * i + 50));
+    }
+
 
 
     while (run) {
@@ -101,7 +107,7 @@ int main()
         SDL_RenderCopy(ren, background, NULL, NULL);;
 
         dices->Draw(ren);
-        newGameButton->newGameWrite(ren, "Nowa gra", newGamePos, openSans);
+        newGameButton->newGameWrite("Nowa gra", newGamePos, openSans);
         score->write();
 
         while(SDL_PollEvent(&e)) {

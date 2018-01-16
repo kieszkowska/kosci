@@ -27,6 +27,7 @@ public:
     void nextPlayer();
     bool isDiceLocked(int i);
     Dice* getDicePointer(int i);
+    int getDiceValue(int i);
 };
 
 #endif // DICES_H

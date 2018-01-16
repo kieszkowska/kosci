@@ -16,7 +16,7 @@ protected:
 public:
     NewGame();
     void click();
-    void newGameWrite(SDL_Renderer* ren, std::string text, SDL_Point pos, WriteText* writer);
+    void newGameWrite(std::string text, SDL_Point pos, WriteText* writer);
     void setPlayers(Player* player1, Player* player2);
 };
 

@@ -12,9 +12,9 @@ void NewGame::click()
     this->player2->resetScore();
 }
 
-void NewGame::newGameWrite(SDL_Renderer *ren, std::string text, SDL_Point pos, WriteText* writer)
+void NewGame::newGameWrite(std::string text, SDL_Point pos, WriteText* writer)
 {
-    this->pos = writer->write(ren, text, pos);
+    this->pos = writer->write(text, pos);
 }
 
 void NewGame::setPlayers(Player *player1, Player *player2)

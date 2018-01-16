@@ -65,3 +65,8 @@ Dice *Dices::getDicePointer(int i)
 {
     return tab[i];
 }
+
+int Dices::getDiceValue(int i)
+{
+    return this->tab[i]->getValue();
+}
