@@ -4,22 +4,6 @@
 CountScore::CountScore(Dices *dices)
 {
     this->dices = dices;
-    for (int i = 0; i < 5; i++) {
-        this->tab[i] = dices->getDicePointer(i);
-        this->valTab[i] = this->tab[i]->getValue();
-    }
-    std::sort(this->valTab, this->valTab + 5);
-
-    this->valTabUnique[0] = this->valTab[0];
-    for (int i = 1; i < 5; i++) {
-        if (this->valTab[i] != this->valTabUnique[i - 1]) {
-            this->valTabUnique[i] = this->valTab[i];
-        }
-        else {
-            this->valTabUnique[i] = 0;
-        }
-    }
-    std::sort(this->valTabUnique, this->valTabUnique + 5);
 }
 
 int CountScore::countScore(int cell)

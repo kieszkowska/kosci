@@ -13,7 +13,8 @@ SOURCES += main.cpp \
     newgame.cpp \
     scoretable.cpp \
     scoretablecell.cpp \
-    countscore.cpp
+    countscore.cpp \
+    turn.cpp
 LIBS += -lSDL2
 LIBS += -lSDL2_image
 LIBS += -lSDL2_ttf
@@ -28,4 +29,5 @@ HEADERS += \
     newgame.h \
     scoretable.h \
     scoretablecell.h \
-    countscore.h
+    countscore.h \
+    turn.h

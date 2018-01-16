@@ -16,12 +16,13 @@
 #include "newgame.h"
 #include "scoretable.h"
 #include "scoretablecell.h"
+#include "turn.h"
+#include "countscore.h"
 
 
 int main()
 {
     srand(time(NULL));
-
 
 //    Init SDL, TTF, IMG
 
@@ -59,6 +60,10 @@ int main()
 
 
 
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+
+
+
     bool run = true;
 
     SDL_Event e;
@@ -69,9 +74,14 @@ int main()
 
 
 
-    RollButton* rollButton = new RollButton(664, 316, 54, 53);
+
+    Turn* turn = new Turn();
+
+    RollButton* rollButton = new RollButton(664, 316, 54, 53, turn);
 
     Dices* dices = new Dices(ren);
+
+    CountScore* count = new CountScore(dices);
 
     rollButton->bindDices(dices);
 
@@ -85,6 +95,8 @@ int main()
 
     ScoreTable* score = new ScoreTable(player1, player2, ren, openSans, dices);
 
+
+
     newGameButton->setPlayers(player1, player2);
 
     ui.push_back(rollButton);
@@ -95,8 +107,8 @@ int main()
     }
 
     for (int i = 0; i < 14; i++) {
-        ui.push_back(new ScoreTableCell(100, 30 * i + 50));
-        ui.push_back(new ScoreTableCell(190, 30 * i + 50));
+        ui.push_back(new ScoreTableCell(1, 100, 30 * i + 50, player1, player2, turn, count));
+        ui.push_back(new ScoreTableCell(1, 190, 30 * i + 50, player1, player2, turn, count));
     }
 
 
@@ -135,6 +147,7 @@ int main()
         delete ui[i];
     }
 
+    delete count;
     delete score;
     delete openSans;
     delete player1;

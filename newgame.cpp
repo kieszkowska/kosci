@@ -8,8 +8,8 @@ NewGame::NewGame()
 
 void NewGame::click()
 {
-    this->player1->resetScore();
-    this->player2->resetScore();
+    this->player1->newGame();
+    this->player2->newGame();
 }
 
 void NewGame::newGameWrite(std::string text, SDL_Point pos, WriteText* writer)

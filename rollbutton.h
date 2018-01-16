@@ -6,15 +6,17 @@
 
 #include "clickable.h"
 #include "dices.h"
+#include "turn.h"
 
 
 class RollButton : public Clickable
 {
 protected:
     Dices* dices;
+    Turn* turn;
 
 public:
-    RollButton(int x, int y, int h, int w);
+    RollButton(int x, int y, int h, int w, Turn* turn);
     ~RollButton();
     SDL_Rect getRect();
     void click();

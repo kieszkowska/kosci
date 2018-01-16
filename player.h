@@ -27,6 +27,8 @@ protected:
 public:
     Player();
     void resetScore();
+    void newGame();
+    int setScoreTable(int i, int val);
     int getScoreTable(int i);
     int getScore();
 };
