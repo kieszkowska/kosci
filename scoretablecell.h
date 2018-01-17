@@ -14,7 +14,6 @@
 class ScoreTableCell : public Clickable
 {
 protected:
-    SDL_Rect pos;
     Player* player1;
     Player* player2;
     Turn* turn;

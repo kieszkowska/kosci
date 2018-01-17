@@ -37,3 +37,8 @@ int Player::getScore()
     return this->score;
 }
 
+void Player::increseScore()
+{
+    this->score++;
+}
+

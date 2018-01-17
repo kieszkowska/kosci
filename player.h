@@ -31,6 +31,7 @@ public:
     void setScoreTable(int i, int val);
     int getScoreTable(int i);
     int getScore();
+    void increseScore();
 };
 
 #endif // PLAYER_H

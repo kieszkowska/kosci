@@ -19,12 +19,24 @@ ScoreTableCell::ScoreTableCell(int pos, int x, int y, Player *player1, Player* p
 
 void ScoreTableCell::click()
 {
-    int val = count->countScore(this->position);
 
-    if (this->turn->getTurnCount() % 2 == 1 && val > -1) {
-        this->player1->setScoreTable(this->position, val);
+    if (this->turn->getTurnCount() % 2 == 1 && this->player1->getScoreTable(this->position) == -1) {
+        int val = count->countScore(this->position);
+
+        if (val > -1) {
+            this->player1->setScoreTable(this->position, val);
+        }
+
+        this->turn->increaseTurnCount();
     }
-    else if (val > -1) {
-        this->player2->setScoreTable(this->position, val);
+
+    else if (this->turn->getTurnCount() % 2 == 0 && this->player2->getScoreTable(this->position) == -1) {
+        int val = count->countScore(this->position);
+
+        if (val > -1) {
+            this->player2->setScoreTable(this->position, val);
+        }
+
+        this->turn->increaseTurnCount();
     }
 }

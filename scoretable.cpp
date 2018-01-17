@@ -1,12 +1,13 @@
 #include "scoretable.h"
 
-ScoreTable::ScoreTable(Player *player1, Player *player2, SDL_Renderer *ren, WriteText *writer, Dices *dices)
+ScoreTable::ScoreTable(Player *player1, Player *player2, SDL_Renderer *ren, WriteText *writer, Dices *dices, Turn*turn)
 {
     this->player1 = player1;
     this->player2 = player2;
     this->ren = ren;
     this->writer = writer;
     this->dices = dices;
+    this->turn = turn;
 
     this->counter = new CountScore(this->dices);
 
@@ -23,13 +24,14 @@ ScoreTable::~ScoreTable()
 void ScoreTable::write()
 {
     SDL_SetRenderDrawBlendMode(ren, SDL_BLENDMODE_BLEND);
+
     for (int i = 0; i < 14; i++) {
         if (i != 6) {
             pos.y = 55 + (i * 30);
             if (this->player1->getScoreTable(i) > -1) {
                 pos.x = 110;
                 this->writer->write(std::to_string(this->player1->getScoreTable(i)).c_str(), pos);
-            } else {
+            } else if (this->turn->getTurnCount() % 2 == 1) {
                 pos.x = 110;
                 this->writer->writeSecondary(std::to_string(this->counter->countScore(i)).c_str(), pos);
             }
@@ -38,7 +40,7 @@ void ScoreTable::write()
             if (this->player2->getScoreTable(i) > -1) {
                 pos.x = 200;
                 this->writer->write(std::to_string(this->player2->getScoreTable(i)).c_str(), pos);
-            } else {
+            } else if (this->turn->getTurnCount() % 2 == 0) {
                 pos.x = 200;
                 this->writer->writeSecondary(std::to_string(this->counter->countScore(i)).c_str(), pos);
             }
@@ -54,6 +56,14 @@ void ScoreTable::write()
         if (this->player2->getScoreTable(i) > -1) {
             sumTop2 += this->player2->getScoreTable(i);
         }
+    }
+
+    if (sumTop1 >= 63) {
+        sumTop1 += 35;
+    }
+
+    if (sumTop2 >= 63) {
+        sumTop2 += 35;
     }
 
     pos.y = 235;
@@ -85,6 +95,18 @@ void ScoreTable::write()
     pos.x = 200;
 
     this->writer->write(std::to_string(sum2).c_str(), pos);
+
+    if (this->turn->getTurnCount() == 27) {
+        this->turn->resetTurnCount();
+        if (sum1 > sum2) {
+            this->player1->increseScore();
+        }
+        else {
+            this->player2->increseScore();
+        }
+        this->player1->resetScore();
+        this->player2->resetScore();
+    }
 
     pos.x = 713;
     pos.y = 70;

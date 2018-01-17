@@ -24,6 +24,7 @@ public:
     ~Dices();
     void Draw(SDL_Renderer *ren);
     void roll();
+    void reset();
     void nextPlayer();
     bool isDiceLocked(int i);
     Dice* getDicePointer(int i);

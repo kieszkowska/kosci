@@ -49,6 +49,14 @@ void Dices::roll()
     }
 }
 
+void Dices::reset()
+{
+    for (int i = 0; i < 5; i++) {
+        this->tab[i]->reset();
+        this->tab[i]->unlock();
+    }
+}
+
 void Dices::nextPlayer()
 {
     for (int i = 0; i < 5; i++) {

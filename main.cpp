@@ -75,11 +75,11 @@ int main()
 
 
 
-    Turn* turn = new Turn();
+    Dices* dices = new Dices(ren);
+
+    Turn* turn = new Turn(dices);
 
     RollButton* rollButton = new RollButton(664, 316, 54, 53, turn);
-
-    Dices* dices = new Dices(ren);
 
     CountScore* count = new CountScore(dices);
 
@@ -93,7 +93,7 @@ int main()
 
     NewGame* newGameButton = new NewGame();
 
-    ScoreTable* score = new ScoreTable(player1, player2, ren, openSans, dices);
+    ScoreTable* score = new ScoreTable(player1, player2, ren, openSans, dices, turn);
 
 
 

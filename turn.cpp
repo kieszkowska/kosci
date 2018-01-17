@@ -1,13 +1,15 @@
 #include "turn.h"
 
-Turn::Turn()
+Turn::Turn(Dices *dices)
 {
-
+    this->dices = dices;
 }
 
 void Turn::increaseTurnCount()
 {
     this->turnCount++;
+    this->rollCount = 1;
+    this->dices->reset();
 }
 
 void Turn::increaseRollCount()

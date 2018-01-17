@@ -1,6 +1,7 @@
 #include "countscore.h"
 
 
+
 CountScore::CountScore(Dices *dices)
 {
     this->dices = dices;
@@ -34,6 +35,7 @@ int CountScore::countScore(int cell)
                 sum += 1;
             }
         }
+
         return sum;
 
     case 1:
@@ -42,6 +44,7 @@ int CountScore::countScore(int cell)
                 sum += 2;
             }
         }
+
         return sum;
 
     case 2:
@@ -50,6 +53,7 @@ int CountScore::countScore(int cell)
                 sum += 3;
             }
         }
+
         return sum;
 
     case 3:
@@ -58,6 +62,7 @@ int CountScore::countScore(int cell)
                 sum += 4;
             }
         }
+
         return sum;
 
     case 4:
@@ -66,6 +71,7 @@ int CountScore::countScore(int cell)
                 sum += 5;
             }
         }
+
         return sum;
 
     case 5:
@@ -74,6 +80,7 @@ int CountScore::countScore(int cell)
                 sum += 6;
             }
         }
+
         return sum;
 
     case 7:
@@ -102,9 +109,11 @@ int CountScore::countScore(int cell)
         if (this->valTab[0] == this->valTab[1] && this->valTab[2] == this->valTab[3] && this->valTab[2] == this->valTab[4]) {
             return 25;
         }
-        if (this->valTab[0] == this->valTab[1] && this->valTab[0] == this->valTab[3] && this->valTab[3] == this->valTab[4]) {
+
+        if (this->valTab[0] == this->valTab[1] && this->valTab[0] == this->valTab[2] && this->valTab[3] == this->valTab[4]) {
             return 25;
         }
+
         return 0;
 
     case 10:

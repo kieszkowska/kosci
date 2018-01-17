@@ -8,5 +8,3 @@ bool Clickable::checkBounds(int x, int y)
     }
     return false;
 }
-
-

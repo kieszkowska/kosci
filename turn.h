@@ -1,15 +1,18 @@
 #ifndef TURN_H
 #define TURN_H
 
+#include "dices.h"
+
 
 class Turn
 {
 protected:
     int turnCount = 1;
     int rollCount = 1;
+    Dices* dices;
 
 public:
-    Turn();
+    Turn(Dices* dices);
     void increaseTurnCount();
     void increaseRollCount();
     void resetTurnCount();
