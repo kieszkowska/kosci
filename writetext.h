@@ -14,7 +14,6 @@ protected:
     TTF_Font* font;
     SDL_Color color {255, 255, 255, 255};
     SDL_Color colorSecondary {109, 109, 109, 255};
-    SDL_Texture* tex;
     SDL_Renderer* ren;
 
 public:

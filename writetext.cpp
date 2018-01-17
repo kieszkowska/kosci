@@ -18,12 +18,15 @@ SDL_Rect WriteText::write(std::string text, SDL_Point pos)
         std::cout << "Błąd fonta" << std::endl;
     }
     SDL_Surface* surf;
+    SDL_Texture* tex;
     surf = TTF_RenderUTF8_Blended(this->font, text.c_str(), this->color);
-    this->tex = SDL_CreateTextureFromSurface(ren, surf);
+    tex = SDL_CreateTextureFromSurface(ren, surf);
     SDL_QueryTexture(tex, NULL, NULL, &rect.w, &rect.h);
     rect.x = pos.x;
     rect.y = pos.y;
-    SDL_RenderCopy(this->ren, this->tex, NULL, &rect);
+    SDL_RenderCopy(this->ren, tex, NULL, &rect);
+    SDL_FreeSurface(surf);
+    SDL_DestroyTexture(tex);
     return rect;
 }
 
@@ -34,11 +37,14 @@ SDL_Rect WriteText::writeSecondary(std::string text, SDL_Point pos)
         std::cout << "Błąd fonta" << std::endl;
     }
     SDL_Surface* surf;
+    SDL_Texture* tex;
     surf = TTF_RenderUTF8_Blended(this->font, text.c_str(), this->colorSecondary);
-    this->tex = SDL_CreateTextureFromSurface(ren, surf);
+    tex = SDL_CreateTextureFromSurface(ren, surf);
     SDL_QueryTexture(tex, NULL, NULL, &rect.w, &rect.h);
     rect.x = pos.x;
     rect.y = pos.y;
-    SDL_RenderCopy(this->ren, this->tex, NULL, &rect);
+    SDL_RenderCopy(this->ren, tex, NULL, &rect);
+    SDL_FreeSurface(surf);
+    SDL_DestroyTexture(tex);
     return rect;
 }
