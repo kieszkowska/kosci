@@ -14,12 +14,12 @@
 class ScoreTableCell : public Clickable
 {
 protected:
-    SDL_Rect cell;
+    SDL_Rect pos;
     Player* player1;
     Player* player2;
     Turn* turn;
     CountScore* count;
-    int pos;
+    int position;
 
 public:
     ScoreTableCell(int pos, int x, int y, Player* player1, Player *player2, Turn *turn, CountScore *count);

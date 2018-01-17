@@ -107,8 +107,8 @@ int main()
     }
 
     for (int i = 0; i < 14; i++) {
-        ui.push_back(new ScoreTableCell(1, 100, 30 * i + 50, player1, player2, turn, count));
-        ui.push_back(new ScoreTableCell(1, 190, 30 * i + 50, player1, player2, turn, count));
+        ui.push_back(new ScoreTableCell(i, 100, 30 * i + 50, player1, player2, turn, count));
+        ui.push_back(new ScoreTableCell(i, 190, 30 * i + 50, player1, player2, turn, count));
     }
 
 
